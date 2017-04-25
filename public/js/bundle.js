@@ -88,7 +88,7 @@ class TableView {
   }
 
   initDomReferences() {
-    this.headerRowEl = document.querySelector('THEAD TR');
+    this.headerRowEl = document.querySelector('THEAD TH');
   }
 
   renderTable() {
