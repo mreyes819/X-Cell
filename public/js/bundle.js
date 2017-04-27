@@ -93,11 +93,25 @@ class TableView {
     this.headerRowEl = document.querySelector('THEAD TR');
     this.sheetBodyEl = document.querySelector('TBODY');
     this.formulaBarEl = document.querySelector('#formula-bar');
+    // this.sumRowEl = document. select last tr in tbody
   }
+
+  /*
+  renderSumRow() {
+
+  }
+
+  */
+
 
   initCurrentCell() {
     this.currentCellLocation = { col: 0, row: 0 };
     this.renderFormulaBar();
+  }
+
+  isCurrentCell(col, row) {
+    return this.currentCellLocation.row === row &&
+           this.currentCellLocation.col === col;
   }
 
   normalizeValueForRendering(value) {
@@ -120,11 +134,6 @@ class TableView {
     getLetterRange('A', this.model.numCols)
       .map(colLabel => createTH(colLabel))
       .forEach(th => this.headerRowEl.appendChild(th));
-  }
-
-  isCurrentCell(col, row) {
-    return this.currentCellLocation.row === row &&
-           this.currentCellLocation.col === col;
   }
 
   renderTableBody() {
@@ -150,20 +159,30 @@ class TableView {
 
   attachEventHandlers() {
     this.sheetBodyEl.addEventListener('click', this.handleSheetClick.bind(this));
+    this.formulaBarEl.addEventListener('keyup', this.handleFormulaBarChange.bind(this));
   }
 
-  isColumnHeaderRow(row) {
-    return row < 1;
+  // isColumnHeaderRow(row) {
+  //   return row < 1;
+  // }
+
+  handleFormulaBarChange(evt){
+    const value = this.formulaBarEl.value;
+    this.model.setValue(this.currentCellLocation, value);
+    this.renderTableBody();
+
   }
 
   handleSheetClick(evt) {
     const col = evt.target.cellIndex;
     const row = evt.target.parentElement.rowIndex - 1;
 
-    if (!this.isColumnHeaderRow(row)) {
-      this.currentCellLocation = { col: col, row: row };
-      this.renderTableBody();
-    }
+    this.currentCellLocation = { col: col, row: row };
+    this.renderTableBody();
+    // if (!this.isColumnHeaderRow(row)) {
+    //   this.currentCellLocation = { col: col, row: row };
+    //   this.renderTableBody();
+    // }
 
     this.renderFormulaBar();
   }
