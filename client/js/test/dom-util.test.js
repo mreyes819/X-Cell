@@ -2,6 +2,7 @@ const {
   createTR,
   createTH,
   createTD,
+  createTF,
   removeChildren
 } = require('../dom-util');
 
@@ -34,6 +35,13 @@ describe('dom-util', () => {
         expect(el.tagName).toBe('TD');
       });
     });
+
+    describe('createTF', () => {
+      it('produces valid TF element', () => {
+        const el = createTF();
+        expect(el.tagName).toBe('TF');
+      })
+    })
   });
 
   describe('removeChidlren()', () => {
