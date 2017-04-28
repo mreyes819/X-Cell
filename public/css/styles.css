@@ -2,6 +2,10 @@ table {
   border-collapse: collapse;
 }
 
+th {
+  background-color: #d3d3d3;
+}
+
 th, td {
   border: 1px solid black;
   min-width: 50px;
