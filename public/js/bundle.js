@@ -172,21 +172,13 @@ class TableView {
   }
 
   renderTableFoot() {
-    // renderTableFoot is called in:
-      // renderTable()
-      // handleFormulaBarChange
-    // !  all 0's in a col won't render sum 0
-    // !  -1 and 1 in a col won't render sum 0
-    let test = this.calcColSum();
-    console.log(test)
-
     removeChildren(this.footSumRowEl);
-    this.calcColSum()
+    this.calculateColumnSum()
       .map(colSum => createTD(colSum))
       .forEach(td => this.footSumRowEl.appendChild(td));
   }
 
-  calcColSum() {
+  calculateColumnSum() {
     let sums = [];
     for (var col = 0; col < this.model.numCols; col++) {
       let column = this.model.getColumn(col)
@@ -211,7 +203,7 @@ class TableView {
     const value = this.formulaBarEl.value;
     this.model.setValue(this.currentCellLocation, value);
     this.renderTableBody();
-    this.calcColSum();
+    //this.calculateColumnSum();
     this.renderTableFoot();
   }
 
