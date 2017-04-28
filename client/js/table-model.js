@@ -32,7 +32,7 @@ class TableModel {
     for(let c = 0; c < this.numCols; c++){
       const location = {col:c, row: row};
       const value = this.data[this._getCellId(location)];
-      values[r] = value;
+      values[c] = value;
     }
     return values
   }
