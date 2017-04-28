@@ -1,99 +1,80 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'bugs', 'x-cell' ]
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'owner',
+1 verbose cli   'ls',
+1 verbose cli   'x-cell' ]
 2 info using npm@3.10.10
 3 info using node@v6.9.4
-4 silly fetchPackageMetaData x-cell
-5 silly fetchNamedPackageData x-cell
-6 silly mapToRegistry name x-cell
-7 silly mapToRegistry using default registry
-8 silly mapToRegistry registry http://registry.npmjs.org/
-9 silly mapToRegistry data Result {
-9 silly mapToRegistry   raw: 'x-cell',
-9 silly mapToRegistry   scope: null,
-9 silly mapToRegistry   escapedName: 'x-cell',
-9 silly mapToRegistry   name: 'x-cell',
-9 silly mapToRegistry   rawSpec: '',
-9 silly mapToRegistry   spec: 'latest',
-9 silly mapToRegistry   type: 'tag' }
-10 silly mapToRegistry uri http://registry.npmjs.org/x-cell
-11 verbose request uri http://registry.npmjs.org/x-cell
-12 verbose request no auth needed
-13 info attempt registry request try #1 at 1:32:05 PM
-14 verbose request id eba62654a10c2123
-15 http request GET http://registry.npmjs.org/x-cell
-16 http 404 http://registry.npmjs.org/x-cell
-17 verbose headers { 'content-type': 'application/json',
-17 verbose headers   'cache-control': 'max-age=0',
-17 verbose headers   'content-length': '2',
-17 verbose headers   'accept-ranges': 'bytes',
-17 verbose headers   date: 'Fri, 28 Apr 2017 20:32:06 GMT',
-17 verbose headers   via: '1.1 varnish',
-17 verbose headers   age: '0',
-17 verbose headers   connection: 'keep-alive',
-17 verbose headers   'x-served-by': 'cache-sjc3128-SJC',
-17 verbose headers   'x-cache': 'MISS',
-17 verbose headers   'x-cache-hits': '0',
-17 verbose headers   'x-timer': 'S1493411526.379170,VS0,VE406',
-17 verbose headers   vary: 'Accept-Encoding' }
-18 silly get cb [ 404,
-18 silly get   { 'content-type': 'application/json',
-18 silly get     'cache-control': 'max-age=0',
-18 silly get     'content-length': '2',
-18 silly get     'accept-ranges': 'bytes',
-18 silly get     date: 'Fri, 28 Apr 2017 20:32:06 GMT',
-18 silly get     via: '1.1 varnish',
-18 silly get     age: '0',
-18 silly get     connection: 'keep-alive',
-18 silly get     'x-served-by': 'cache-sjc3128-SJC',
-18 silly get     'x-cache': 'MISS',
-18 silly get     'x-cache-hits': '0',
-18 silly get     'x-timer': 'S1493411526.379170,VS0,VE406',
-18 silly get     vary: 'Accept-Encoding' } ]
-19 silly fetchPackageMetaData Error: Registry returned 404 for GET on http://registry.npmjs.org/x-cell
-19 silly fetchPackageMetaData     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
-19 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:280:14)
-19 silly fetchPackageMetaData     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
-19 silly fetchPackageMetaData     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:187:22)
-19 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
-19 silly fetchPackageMetaData     at Request.emit (events.js:191:7)
-19 silly fetchPackageMetaData     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1048:10)
-19 silly fetchPackageMetaData     at emitOne (events.js:96:13)
-19 silly fetchPackageMetaData     at Request.emit (events.js:188:7)
-19 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:969:12)
-19 silly fetchPackageMetaData  error for x-cell { Error: Registry returned 404 for GET on http://registry.npmjs.org/x-cell
-19 silly fetchPackageMetaData     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
-19 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:280:14)
-19 silly fetchPackageMetaData     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
-19 silly fetchPackageMetaData     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:187:22)
-19 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
-19 silly fetchPackageMetaData     at Request.emit (events.js:191:7)
-19 silly fetchPackageMetaData     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1048:10)
-19 silly fetchPackageMetaData     at emitOne (events.js:96:13)
-19 silly fetchPackageMetaData     at Request.emit (events.js:188:7)
-19 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:969:12) pkgid: 'x-cell', statusCode: 404, code: 'E404' }
-20 verbose stack Error: Registry returned 404 for GET on http://registry.npmjs.org/x-cell
-20 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
-20 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:280:14)
-20 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
-20 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:187:22)
-20 verbose stack     at emitTwo (events.js:106:13)
-20 verbose stack     at Request.emit (events.js:191:7)
-20 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1048:10)
-20 verbose stack     at emitOne (events.js:96:13)
-20 verbose stack     at Request.emit (events.js:188:7)
-20 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:969:12)
-21 verbose statusCode 404
-22 verbose pkgid x-cell
-23 verbose cwd /Users/mttrys/dev/precourse/x-cell
-24 error Darwin 16.5.0
-25 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "bugs" "x-cell"
-26 error node v6.9.4
-27 error npm  v3.10.10
-28 error code E404
-29 error 404 Registry returned 404 for GET on http://registry.npmjs.org/x-cell
-30 error 404
-31 error 404 'x-cell' is not in the npm registry.
-32 error 404 You should bug the author to publish it (or use the name yourself!)
-33 error 404 Note that you can also install from a
-34 error 404 tarball, folder, http url, or git url.
-35 verbose exit [ 1, true ]
+4 silly mapToRegistry name x-cell
+5 silly mapToRegistry using default registry
+6 silly mapToRegistry registry http://registry.npmjs.org/
+7 silly mapToRegistry data Result {
+7 silly mapToRegistry   raw: 'x-cell',
+7 silly mapToRegistry   scope: null,
+7 silly mapToRegistry   escapedName: 'x-cell',
+7 silly mapToRegistry   name: 'x-cell',
+7 silly mapToRegistry   rawSpec: '',
+7 silly mapToRegistry   spec: 'latest',
+7 silly mapToRegistry   type: 'tag' }
+8 silly mapToRegistry uri http://registry.npmjs.org/x-cell
+9 verbose request uri http://registry.npmjs.org/x-cell
+10 verbose request no auth needed
+11 info attempt registry request try #1 at 1:36:32 PM
+12 verbose request id e15a1904e5d88c1b
+13 http request GET http://registry.npmjs.org/x-cell
+14 http 404 http://registry.npmjs.org/x-cell
+15 verbose headers { 'content-type': 'application/json',
+15 verbose headers   'cache-control': 'max-age=0',
+15 verbose headers   'content-length': '2',
+15 verbose headers   'accept-ranges': 'bytes',
+15 verbose headers   date: 'Fri, 28 Apr 2017 20:36:34 GMT',
+15 verbose headers   via: '1.1 varnish',
+15 verbose headers   age: '0',
+15 verbose headers   connection: 'keep-alive',
+15 verbose headers   'x-served-by': 'cache-sjc3137-SJC',
+15 verbose headers   'x-cache': 'MISS',
+15 verbose headers   'x-cache-hits': '0',
+15 verbose headers   'x-timer': 'S1493411794.698610,VS0,VE411',
+15 verbose headers   vary: 'Accept-Encoding' }
+16 silly get cb [ 404,
+16 silly get   { 'content-type': 'application/json',
+16 silly get     'cache-control': 'max-age=0',
+16 silly get     'content-length': '2',
+16 silly get     'accept-ranges': 'bytes',
+16 silly get     date: 'Fri, 28 Apr 2017 20:36:34 GMT',
+16 silly get     via: '1.1 varnish',
+16 silly get     age: '0',
+16 silly get     connection: 'keep-alive',
+16 silly get     'x-served-by': 'cache-sjc3137-SJC',
+16 silly get     'x-cache': 'MISS',
+16 silly get     'x-cache-hits': '0',
+16 silly get     'x-timer': 'S1493411794.698610,VS0,VE411',
+16 silly get     vary: 'Accept-Encoding' } ]
+17 error owner ls Couldn't get owner data x-cell
+18 verbose stack Error: Registry returned 404 for GET on http://registry.npmjs.org/x-cell
+18 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+18 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:280:14)
+18 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
+18 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:187:22)
+18 verbose stack     at emitTwo (events.js:106:13)
+18 verbose stack     at Request.emit (events.js:191:7)
+18 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1048:10)
+18 verbose stack     at emitOne (events.js:96:13)
+18 verbose stack     at Request.emit (events.js:188:7)
+18 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:969:12)
+19 verbose statusCode 404
+20 verbose pkgid x-cell
+21 verbose cwd /Users/mttrys/dev/precourse/x-cell
+22 error Darwin 16.5.0
+23 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "owner" "ls" "x-cell"
+24 error node v6.9.4
+25 error npm  v3.10.10
+26 error code E404
+27 error 404 Registry returned 404 for GET on http://registry.npmjs.org/x-cell
+28 error 404
+29 error 404 'x-cell' is not in the npm registry.
+30 error 404 You should bug the author to publish it (or use the name yourself!)
+31 error 404 Note that you can also install from a
+32 error 404 tarball, folder, http url, or git url.
+33 verbose exit [ 1, true ]
