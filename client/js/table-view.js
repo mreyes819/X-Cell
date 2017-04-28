@@ -80,9 +80,10 @@ class TableView {
       // handleFormulaBarChange
     // !  all 0's in a col won't render sum 0
     // !  -1 and 1 in a col won't render sum 0
+    let test = this.calcColSum();
+    console.log(test)
+
     removeChildren(this.footSumRowEl);
-    // var test = this.calcColSum();
-    // console.log(test)
     this.calcColSum()
       .map(colSum => createTD(colSum))
       .forEach(td => this.footSumRowEl.appendChild(td));
@@ -92,16 +93,15 @@ class TableView {
     let sums = [];
     for (var col = 0; col < this.model.numCols; col++) {
       let column = this.model.getColumn(col)
-      let total = 0;
+      let total = null;
       for (var row in column){
-        let value = column[row];
-        if(!isNaN(parseInt(value))){
-          total += parseInt(value);
+        let value = parseInt(column[row]);
+        if(!isNaN(value)){
+          total += value;
         }
       }
       sums.push(total);
     }
-    //console.log(sums)
     return sums
   }
 
