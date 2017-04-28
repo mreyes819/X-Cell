@@ -93,16 +93,7 @@ class TableView {
     this.headerRowEl = document.querySelector('THEAD TR');
     this.sheetBodyEl = document.querySelector('TBODY');
     this.formulaBarEl = document.querySelector('#formula-bar');
-    // this.sumRowEl = document. select last tr in tbody
   }
-
-  /*
-  renderSumRow() {
-
-  }
-
-  */
-
 
   initCurrentCell() {
     this.currentCellLocation = { col: 0, row: 0 };
@@ -162,10 +153,6 @@ class TableView {
     this.formulaBarEl.addEventListener('keyup', this.handleFormulaBarChange.bind(this));
   }
 
-  // isColumnHeaderRow(row) {
-  //   return row < 1;
-  // }
-
   handleFormulaBarChange(evt){
     const value = this.formulaBarEl.value;
     this.model.setValue(this.currentCellLocation, value);
@@ -179,11 +166,6 @@ class TableView {
 
     this.currentCellLocation = { col: col, row: row };
     this.renderTableBody();
-    // if (!this.isColumnHeaderRow(row)) {
-    //   this.currentCellLocation = { col: col, row: row };
-    //   this.renderTableBody();
-    // }
-
     this.renderFormulaBar();
   }
 
