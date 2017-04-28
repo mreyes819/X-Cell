@@ -2,10 +2,10 @@
 
 Welcome to the X-Cell app!
 
-This is a toy spreadsheet app. 
+This is a toy spreadsheet app.
 
 ## Feature Spec
-![img](/Users/mttrys/dev/precourse/x-cell/Media/spec_feature.jpg)
+![img](http://i.imgur.com/jgOc9eP.jpg)
 
 ## Tech Spec
-![img](/Users/mttrys/dev/precourse/x-cell/Media/spec_tech.jpg)
+![img](http://i.imgur.com/S1j0HmG.jpg)
