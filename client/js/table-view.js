@@ -55,12 +55,18 @@ class TableView {
     removeChildren(this.headerRowEl);
     // column for row labels
     this.headerRowEl.appendChild(createTH(''));
-    //
+
+    // labels columns
     getLetterRange('A', this.model.numCols)
       .map(colLabel => createTH(colLabel))
       .forEach(th => this.headerRowEl.appendChild(th));
 
-
+    // highlights columns
+    const col = this.currentCellLocation.col
+    const row = this.currentCellLocation.row
+    if (col > 1 && row === -1){
+      document.getElementsByTagName("TH")[col].className = 'current-col';
+    }
   }
 
   renderTableBody() {
@@ -78,6 +84,9 @@ class TableView {
 
         if (this.isCurrentCell(0, row)){
           td.className = 'current-row';
+        }
+        if (this.isCurrentCell(col, -1) && col > 0){
+          td.className = 'current-col';
         }
 
         if (col === 0) {
@@ -129,6 +138,9 @@ class TableView {
     this.sheetBodyEl.addEventListener('click',
       this.handleSheetClick.bind(this));
 
+    this.headerRowEl.addEventListener('click',
+      this.handleColumnLableClick.bind(this));
+
     this.formulaBarEl.addEventListener('keyup',
       this.handleFormulaBarChange.bind(this));
 
@@ -139,7 +151,6 @@ class TableView {
     document.getElementById('Add Row')
       .addEventListener('click',
         this.addRow.bind(this));
-
   }
 
   addColumn(event){
@@ -159,12 +170,22 @@ class TableView {
     this.renderTableFoot();
   }
 
+  handleColumnLableClick(evt){
+    const col = evt.target.cellIndex;
+    const row = evt.target.parentElement.rowIndex - 1;
+    this.currentCellLocation = { col: col, row: row };
+    this.renderTableBody();
+    this.renderTableHeader();
+
+  }
+
   handleSheetClick(evt) {
     const col = evt.target.cellIndex;
     const row = evt.target.parentElement.rowIndex - 1;
 
     this.currentCellLocation = { col: col, row: row };
     this.renderTableBody();
+    this.renderTableHeader();
     this.renderFormulaBar();
   }
 
