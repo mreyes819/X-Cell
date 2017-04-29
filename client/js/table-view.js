@@ -55,7 +55,6 @@ class TableView {
     removeChildren(this.headerRowEl);
     // column for row labels
     this.headerRowEl.appendChild(createTH(''));
-    console.log(this.headerRowEl)
     //
     getLetterRange('A', this.model.numCols)
       .map(colLabel => createTH(colLabel))
@@ -77,6 +76,7 @@ class TableView {
           td.className = 'current-cell';
         }
 
+
         if (col === 0) {
           td.id = row;
           td.value = row;
@@ -97,7 +97,6 @@ class TableView {
     removeChildren(this.footSumRowEl);
     // column for row labels
     this.footSumRowEl.appendChild(createTH(''));
-    console.log(this.footSumRowEl)
     //
     this.calculateColumnSum()
       .map(colSum => createTD(colSum))
