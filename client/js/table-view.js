@@ -24,7 +24,7 @@ class TableView {
   }
 
   initCurrentCell() {
-    this.currentCellLocation = { col: 0, row: 0 };
+    this.currentCellLocation = { col: 1, row: 0 };
     this.renderFormulaBar();
   }
 
@@ -76,10 +76,12 @@ class TableView {
           td.className = 'current-cell';
         }
 
+        if (this.isCurrentCell(0, row)){
+          td.className = 'current-row';
+        }
 
         if (col === 0) {
           td.id = row;
-          td.value = row;
           td.innerHTML = row;
           td.align="center"
         }

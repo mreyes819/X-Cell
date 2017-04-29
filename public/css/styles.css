@@ -17,7 +17,7 @@ tfoot {
   background-color: #39FF14;
 }
 
-.current-cell {
+.current-cell, .current-row, .current-column {
   background-color: pink
 }
 
