@@ -18,6 +18,7 @@ class TableModel {
   }
 
   getColumn(column) {
+    // echo
     let values = {};
     for (let r = 0; r < this.numRows; r++){
       const location = {col: column, row: r};
@@ -28,6 +29,7 @@ class TableModel {
   }
 
   getRow(row){
+    // echo
     let values = {};
     for(let c = 0; c < this.numCols; c++){
       const location = {col:c, row: row};

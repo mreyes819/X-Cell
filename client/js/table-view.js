@@ -82,6 +82,8 @@ class TableView {
   }
 
   calculateColumnSum() {
+    // I would like for this to be in a seperate JS file
+    // with all other math operators
     let sums = [];
     for (var col = 0; col < this.model.numCols; col++) {
       let column = this.model.getColumn(col)
@@ -98,15 +100,36 @@ class TableView {
   }
 
   attachEventHandlers() {
-    this.sheetBodyEl.addEventListener('click', this.handleSheetClick.bind(this));
-    this.formulaBarEl.addEventListener('keyup', this.handleFormulaBarChange.bind(this));
+    this.sheetBodyEl.addEventListener('click',
+      this.handleSheetClick.bind(this));
+
+    this.formulaBarEl.addEventListener('keyup',
+      this.handleFormulaBarChange.bind(this));
+
+    document.getElementById('Add Column')
+      .addEventListener('click',
+        this.addColumn.bind(this));
+
+    document.getElementById('Add Row')
+      .addEventListener('click',
+        this.addRow.bind(this));
+
+  }
+
+  addColumn(event){
+    this.model.numCols = this.model.numCols + 1;
+    this.renderTable();
+  }
+
+  addRow(event){
+    this.model.numRows = this.model.numRows + 1;
+    this.renderTable();
   }
 
   handleFormulaBarChange(evt){
     const value = this.formulaBarEl.value;
     this.model.setValue(this.currentCellLocation, value);
     this.renderTableBody();
-    //this.calculateColumnSum();
     this.renderTableFoot();
   }
 
