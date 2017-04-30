@@ -20,7 +20,7 @@ describe('table-view', () => {
 
       // inspect the inital state
       let trs = document.querySelectorAll('TBODY TR');
-      let td = trs[0].cells[0];
+      let td = trs[0].cells[1];
       expect(td.textContent).toBe('');
 
       // simulate user action
@@ -29,7 +29,7 @@ describe('table-view', () => {
 
       // inspect the resulting state
       trs = document.querySelectorAll('TBODY TR');
-      expect(trs[0].cells[0].textContent).toBe('65');
+      expect(trs[0].cells[1].textContent).toBe('65');
     });
 
 
@@ -84,7 +84,7 @@ describe('table-view', () => {
 
       // inspect the initial state
       let ths = document.querySelectorAll('THEAD TH');
-      expect(ths.length).toBe(numCols);
+      expect(ths.length - 1).toBe(numCols);
     });
 
     it('fills in the values from the model', () => {
@@ -111,10 +111,10 @@ describe('table-view', () => {
 
       // inspect the inital state
       let ths = document.querySelectorAll('THEAD TH');
-      expect(ths.length).toBe(numCols);
+      expect(ths.length - 1).toBe(numCols);
 
       let labelTexts = Array.from(ths).map(el => el.textContent);
-      expect(labelTexts).toEqual(['A','B','C','D','E','F'])
+      expect(labelTexts).toEqual(['','A','B','C','D','E','F'])
     });
   });
 
@@ -133,7 +133,7 @@ describe('table-view', () => {
       // inspect the inital state
       let ths = document.querySelectorAll('TFOOT TR');
       let columnSums = Array.from(ths).map(el => el.textContent);
-      expect(columnSums).toEqual(['2-20'])
+      expect(columnSums).toEqual(['-20'])
     })
   });
 });
