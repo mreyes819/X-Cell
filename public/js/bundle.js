@@ -72,6 +72,7 @@ class TableModel {
   }
 
   shiftColumn(column){
+    // not implemented. See addColumn() in table-view.js
     const values = getColumn(column)
     column = column + 1;
     for (var r = 0; r < values.length; r++){
@@ -92,7 +93,7 @@ class TableModel {
   }
 
   shitRow(row){
-    // similar to shift column
+    // not implemented. See addRow() in table-view.js
   }
 
   getRow(row){
