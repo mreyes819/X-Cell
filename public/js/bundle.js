@@ -92,7 +92,7 @@ class TableModel {
     return values
   }
 
-  shitRow(row){
+  shiftRow(row){
     // not implemented. See addRow() in table-view.js
   }
 
