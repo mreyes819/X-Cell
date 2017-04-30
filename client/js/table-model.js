@@ -1,5 +1,5 @@
 class TableModel {
-  constructor(numCols=10, numRows=20) {
+  constructor(numCols=5, numRows=10) {
     this.numCols = numCols;
     this.numRows = numRows;
     this.data = {};
@@ -16,6 +16,42 @@ class TableModel {
   setValue(location, value) {
     this.data[this._getCellId(location)] = value;
   }
+
+  shiftColumn(column){
+    const values = getColumn(column)
+    column = column + 1;
+    for (var r = 0; r < values.length; r++){
+      let location = { col: column, row: r }
+      setValue(location, values[r])
+    }
+  }
+
+  getColumn(column) {
+    // echo
+    let values = {};
+    for (let r = 0; r < this.numRows; r++){
+      const location = {col: column, row: r};
+      const value = this.data[this._getCellId(location)];
+      values[r] = value;
+    }
+    return values
+  }
+
+  shitRow(row){
+    // similar to shift column
+  }
+
+  getRow(row){
+    // echo
+    let values = {};
+    for(let c = 0; c < this.numCols; c++){
+      const location = {col:c, row: row};
+      const value = this.data[this._getCellId(location)];
+      values[c] = value;
+    }
+    return values
+  }
+
 }
 
 module.exports = TableModel;

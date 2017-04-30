@@ -34,6 +34,7 @@ describe('dom-util', () => {
         expect(el.tagName).toBe('TD');
       });
     });
+
   });
 
   describe('removeChidlren()', () => {

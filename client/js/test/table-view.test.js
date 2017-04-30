@@ -118,5 +118,27 @@ describe('table-view', () => {
     });
   });
 
+  describe('table footer', () => {
+    it('calculats the sum of a column', () => {
+      // set up the inital state
+      const model = new TableModel(3,3);
+      const view = new TableView(model);
+      model.setValue({col:0, row:0}, 1);
+      model.setValue({col:0, row:2}, 1);
+      model.setValue({col:1, row:1}, -2);
+      model.setValue({col:2, row:0}, 3);
+      model.setValue({col:2, row:2}, -3);
+      view.init();
 
+      // inspect the inital state
+      let ths = document.querySelectorAll('TFOOT TR');
+      let columnSums = Array.from(ths).map(el => el.textContent);
+      expect(columnSums).toEqual(['2-20'])
+    })
+  });
 });
+
+
+
+
+

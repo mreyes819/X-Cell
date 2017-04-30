@@ -2,6 +2,10 @@ table {
   border-collapse: collapse;
 }
 
+th {
+  background-color: #d3d3d3;
+}
+
 th, td {
   border: 1px solid black;
   min-width: 50px;
@@ -9,7 +13,11 @@ th, td {
   padding: 3px
 }
 
-.current-cell {
+tfoot {
+  background-color: #39FF14;
+}
+
+.current-cell, .current-row, .current-col {
   background-color: pink
 }
 
