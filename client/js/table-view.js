@@ -158,10 +158,9 @@ class TableView {
     const col = this.currentCellLocation.col
     const row = this.currentCellLocation.row
 
+    // checks to see if in col header when user clicks add row
+    // adds column to the right of the current column
     if (row === -1){
-      // echo, !DRY
-      // shifts column
-      // would like to put this funtion into table-model "shiftColumn"
       for(var c = this.model.numCols - 1; c > col; c--) {
         const columnValues = this.model.getColumn(c);
         for(var r = 0; r < this.model.numRows; r++){
@@ -187,10 +186,9 @@ class TableView {
     const col = this.currentCellLocation.col
     const row = this.currentCellLocation.row
 
+    // checks to see if in row header when user clicks add row
+    // adds row below the current row selected.
     if (col === 0){
-      // echo, !DRY
-      // shifts row
-      // would like to put this funtion into table-model "shiftRow"
       for(var r = this.model.numRows - 1; r > row; r--) {
         const rowValues = this.model.getRow(r);
         console.log(rowValues)
