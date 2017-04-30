@@ -165,6 +165,7 @@ class TableView {
 
   renderTableHeader() {
     removeChildren(this.headerRowEl);
+
     // column for row labels
     this.headerRowEl.appendChild(createTH(''));
 
@@ -218,7 +219,7 @@ class TableView {
     removeChildren(this.footSumRowEl);
     // column for row labels
     this.footSumRowEl.appendChild(createTH(''));
-    //
+    // columns for column sums
     this.calculateColumnSum()
       .map(colSum => createTD(colSum))
       .forEach(td => this.footSumRowEl.appendChild(td));
@@ -342,7 +343,6 @@ class TableView {
   handleSheetClick(evt) {
     const col = evt.target.cellIndex;
     const row = evt.target.parentElement.rowIndex - 1;
-
     this.currentCellLocation = { col: col, row: row };
     this.renderTableBody();
     this.renderTableHeader();
