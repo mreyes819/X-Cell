@@ -71,6 +71,15 @@ class TableModel {
     this.data[this._getCellId(location)] = value;
   }
 
+  shiftColumn(column){
+    const values = getColumn(column)
+    column = column + 1;
+    for (var r = 0; r < values.length; r++){
+      let location = { col: column, row: r }
+      setValue(location, values[r])
+    }
+  }
+
   getColumn(column) {
     // echo
     let values = {};
@@ -80,6 +89,10 @@ class TableModel {
       values[r] = value;
     }
     return values
+  }
+
+  shitRow(row){
+    // similar to shift column
   }
 
   getRow(row){
@@ -163,7 +176,7 @@ class TableView {
     // highlights columns
     const col = this.currentCellLocation.col
     const row = this.currentCellLocation.row
-    if (col > 1 && row === -1){
+    if (col > 0 && row === -1){
       document.getElementsByTagName("TH")[col].className = 'current-col';
     }
   }
@@ -180,14 +193,12 @@ class TableView {
         if (this.isCurrentCell(col, row)) {
           td.className = 'current-cell';
         }
-
         if (this.isCurrentCell(0, row)){
           td.className = 'current-row';
         }
         if (this.isCurrentCell(col, -1) && col > 0){
           td.className = 'current-col';
         }
-
         if (col === 0) {
           td.id = row;
           td.innerHTML = row;
@@ -254,11 +265,60 @@ class TableView {
 
   addColumn(event){
     this.model.numCols = this.model.numCols + 1;
+
+    const col = this.currentCellLocation.col
+    const row = this.currentCellLocation.row
+
+    if (row === -1){
+      // echo, !DRY
+      // shifts column
+      // would like to put this funtion into table-model "shiftColumn"
+      for(var c = this.model.numCols - 1; c > col; c--) {
+        const columnValues = this.model.getColumn(c);
+        for(var r = 0; r < this.model.numRows; r++){
+          let location = { col: c + 1, row: r };
+          const value = columnValues[r]
+          this.model.setValue(location, value);
+        }
+      }
+
+      const columnValues = this.model.getColumn(col + 1);
+      for (var r = 0; r < this.model.numRows; r++) {
+        let location = { col: col + 1, row: r };
+        this.model.setValue(location, null);
+      }
+    }
+
     this.renderTable();
   }
 
   addRow(event){
     this.model.numRows = this.model.numRows + 1;
+
+    const col = this.currentCellLocation.col
+    const row = this.currentCellLocation.row
+
+    if (col === 0){
+      // echo, !DRY
+      // shifts row
+      // would like to put this funtion into table-model "shiftRow"
+      for(var r = this.model.numRows - 1; r > row; r--) {
+        const rowValues = this.model.getRow(r);
+        console.log(rowValues)
+        for(var c = 0; c < this.model.numCols; c++){
+          let location = { col: c, row: r + 1 };
+          const value = rowValues[c]
+          this.model.setValue(location, value);
+        }
+      }
+
+      const rowValues = this.model.getRow(row + 1);
+      for (var c = 0; c < this.model.numCols; c++) {
+        let location = { col: c, row: row + 1 };
+        this.model.setValue(location, null);
+      }
+    }
+
     this.renderTable();
   }
 
@@ -275,6 +335,7 @@ class TableView {
     this.currentCellLocation = { col: col, row: row };
     this.renderTableBody();
     this.renderTableHeader();
+
 
   }
 
