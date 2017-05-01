@@ -79,6 +79,7 @@ class TableView {
         const value = this.model.getValue(position);
         const td = createTD(value);
 
+        // highlighting cells
         if (this.isCurrentCell(col, row)) {
           td.className = 'current-cell';
         }
@@ -117,10 +118,10 @@ class TableView {
     // I would like for this to be in a seperate JS file
     // with all other math operators but I digress
     let sums = [];
-    for (var col = 1 ; col < this.model.numCols + 1; col++) {
+    for (let col = 1 ; col < this.model.numCols + 1; col++) {
       let column = this.model.getColumn(col)
       let total = null;
-      for (var row in column){
+      for (let row in column){
         let value = parseInt(column[row]);
         if(!isNaN(value)){
           total += value;
@@ -162,9 +163,9 @@ class TableView {
     // adds column to the right of the current column
     // I should have implemented in table-model
     if (row === -1){
-      for(var c = this.model.numCols - 1; c > col; c--) {
+      for(let c = this.model.numCols - 1; c > col; c--) {
         const columnValues = this.model.getColumn(c);
-        for(var r = 0; r < this.model.numRows; r++){
+        for(let r = 0; r < this.model.numRows; r++){
           let location = { col: c + 1, row: r };
           const value = columnValues[r]
           this.model.setValue(location, value);
@@ -172,7 +173,7 @@ class TableView {
       }
 
       const columnValues = this.model.getColumn(col + 1);
-      for (var r = 0; r < this.model.numRows; r++) {
+      for (let r = 0; r < this.model.numRows; r++) {
         let location = { col: col + 1, row: r };
         this.model.setValue(location, null);
       }
@@ -191,10 +192,9 @@ class TableView {
     // adds row below the current row selected.
     // I should have implemented in table-model
     if (col === 0){
-      for(var r = this.model.numRows - 1; r > row; r--) {
+      for(let r = this.model.numRows - 1; r > row; r--) {
         const rowValues = this.model.getRow(r);
-        console.log(rowValues)
-        for(var c = 0; c < this.model.numCols; c++){
+        for(let c = 0; c < this.model.numCols; c++){
           let location = { col: c, row: r + 1 };
           const value = rowValues[c]
           this.model.setValue(location, value);
@@ -202,7 +202,7 @@ class TableView {
       }
 
       const rowValues = this.model.getRow(row + 1);
-      for (var c = 0; c < this.model.numCols; c++) {
+      for (let c = 0; c < this.model.numCols; c++) {
         let location = { col: c, row: row + 1 };
         this.model.setValue(location, null);
       }
