@@ -160,6 +160,7 @@ class TableView {
 
     // checks to see if in col header when user clicks add row
     // adds column to the right of the current column
+    // I should have implemented in table-model
     if (row === -1){
       for(var c = this.model.numCols - 1; c > col; c--) {
         const columnValues = this.model.getColumn(c);
@@ -188,6 +189,7 @@ class TableView {
 
     // checks to see if in row header when user clicks add row
     // adds row below the current row selected.
+    // I should have implemented in table-model
     if (col === 0){
       for(var r = this.model.numRows - 1; r > row; r--) {
         const rowValues = this.model.getRow(r);
