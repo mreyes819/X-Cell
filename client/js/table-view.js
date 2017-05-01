@@ -235,6 +235,7 @@ class TableView {
     this.renderTableBody();
     this.renderTableHeader();
     this.renderFormulaBar();
+    console.log('test')
   }
 
 }
