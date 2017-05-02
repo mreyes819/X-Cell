@@ -14,7 +14,7 @@ describe('table-view', () => {
   describe('formula bar', () => {
     it('makes changes TO the value of the current cell', () => {
       // set up the initial state
-      const model = new TableModel(3,3);
+      const model = new TableModel(3, 3);
       const view = new TableView(model);
       view.init();
 
@@ -37,7 +37,7 @@ describe('table-view', () => {
       // set up the initial value
       const model = new TableModel(3, 3);
       const view = new TableView(model);
-      model.setValue({col:2, row:1}, '123');
+      model.setValue({ col: 2, row: 1 }, '123');
       view.init();
 
       //inspect the inital state
@@ -51,45 +51,81 @@ describe('table-view', () => {
       // inspect the resulting state
       expect(formulaBarEl.value).toBe('123');
     });
+
   });
 
-  describe('add row/column', () => {
+  describe('add row/column buttons', () => {
     it('adds a new row when add row button is clicked', () => {
-      const model = new TableModel(5,5);
+      // set up the initial state
+      const model = new TableModel(5, 5);
       const view = new TableView(model);
       view.init()
+
+      // simulate user action
       document.getElementById('Add Row').click();
+      // inspect the resulting state
       expect(model.numRows).toBe(6);
+    });
+
+    it('s add row button adds one row below the current row', () => {
+      // set up the initial state
+      const model = new TableModel(3, 3);
+      const view = new TableView(model);
+      let location_a = { col: 1, row: 0 };
+      let location_b = { col: 2, row: 1 }
+      model.setValue(location_a, 'A');
+      model.setValue(location_b, 'B');
+      view.init();
+
+      // simulate user action
+      let trs = document.querySelectorAll('TBODY TR');
+      let td = trs[0].cells[0];
+      td.click()
+      document.getElementById('Add Row').click();
+
+      // inspect the resulting state
+      expect(model.getValue({ col: 2, row: 2 })).toBe('B');
 
     });
 
     it('adds a new column when add column button is clicked', () => {
-      const model = new TableModel(5,5);
+      // set up the initial state
+      const model = new TableModel(5, 5);
       const view = new TableView(model);
       view.init()
+      // simulate user action
       document.getElementById('Add Column').click();
+      // inspect the resulting state
       expect(model.numCols).toBe(6)
     });
 
 
-    it('adds a new row when add row button is clicked below current row', () => {
-      const model = new TableModel(4,4);
-      const view = new TableView(model);
-      view.init()
-      model.setValue({col:1, row:0}, 'A');
-      model.setValue({col:1, row:1}, 'B');
-      model.setValue({col:2, row:0}, 'C');
-      model.setValue({col:2, row:1}, 'D');
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-      // simulate user action
-        // selects row header
-        // clicks add row
+    // it('s add column button adds one column to the right of the current column', () => {
 
-      // inspect the resulting state
-    });
+    //   // set up the initial state
+    //   const model = new TableModel(3, 3);
+    //   const view = new TableView(model);
+    //   let location_a = { col: 1, row: 0 };
+    //   let location_b = { col: 2, row: 1 }
 
-    // it('adds a new coulmn when add coulmn button is clicked to the right of the current column', () => {
+    //   model.setValue(location_a, 'A');
+    //   model.setValue(location_b, 'B');
+    //   view.init();
+
+    //   // simulate user action
+    //   let trs = document.querySelectorAll('TBODY TR');
+    //   let td = trs[0].cells[0];
+    //   td.click()
+    //   document.getElementById('Add Row').click();
+
+    //   // inspect the resulting state
+    //   expect(model.getValue({ col: 2, row: 2 })).toBe('B');
+
     // });
+
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   });
 
@@ -97,7 +133,7 @@ describe('table-view', () => {
 
     it('highlights the current cell when clicked', () => {
       // set up the initial state
-      const model = new TableModel(10,5);
+      const model = new TableModel(10, 5);
       const view = new TableView(model);
       view.init()
 
@@ -130,9 +166,9 @@ describe('table-view', () => {
 
     it('fills in the values from the model', () => {
       // set up the inital state
-      const model = new TableModel(3,3);
+      const model = new TableModel(3, 3);
       const view = new TableView(model);
-      model.setValue({col:2, row:1}, '123');
+      model.setValue({ col: 2, row: 1 }, '123');
       view.init();
 
       // inspect the intial state
@@ -142,7 +178,7 @@ describe('table-view', () => {
 
     it('highlights the current row when a row label cell is clicked', () => {
       // set up the initial state
-      const model = new TableModel(5,5);
+      const model = new TableModel(5, 5);
       const view = new TableView(model);
       view.init()
 
@@ -178,48 +214,23 @@ describe('table-view', () => {
       let ths = document.querySelectorAll('THEAD TH');
       expect(ths.length - 1).toBe(numCols);
 
+      // inspect the resulting state
       let labelTexts = Array.from(ths).map(el => el.textContent);
-      expect(labelTexts).toEqual(['','A','B','C','D','E','F'])
+      expect(labelTexts).toEqual(['', 'A', 'B', 'C', 'D', 'E', 'F'])
     });
-
-    // it('highlights the current column when a table header label cell is clicked', () => {
-    //   // set up the initial state
-    //   const model = new TableModel(5,5);
-    //   const view = new TableView(model);
-    //   view.init()
-
-    //   // inspect the initial state
-    //   let ths = document.querySelectorAll('THEAD TH');
-    //   console.log(ths)
-    //   console.log(ths[1].HTMLTableHeaderCellElement)
-    //   ths[1].click();
-    //   //let td = ths['0'];
-
-    //   console.log(ths[1].HTMLTableHeaderCellElement)
-    //   //expect(td.className).toBe('');
-    //   // trs = document.querySelectorAll('TBODY TR');
-    //   // td = trs[2].cells[3];
-    //   // simulate user action
-    //   //td.click();
-
-    //   // inspect the resulting state
-    //   // ths = document.querySelectorAll('THEAD TH');
-    //   // td = ths[0].cells[3];
-    //   // expect(td.className).not.toBe('');
-    // });
 
   });
 
   describe('table footer', () => {
     it('calculats the sum of a column', () => {
       // set up the inital state
-      const model = new TableModel(3,3);
+      const model = new TableModel(3, 3);
       const view = new TableView(model);
-      model.setValue({col:1, row:0}, 1);
-      model.setValue({col:1, row:2}, 1);
-      model.setValue({col:2, row:1}, -2);
-      model.setValue({col:3, row:0}, 3);
-      model.setValue({col:3, row:2}, -3);
+      model.setValue({ col: 1, row: 0 }, 1);
+      model.setValue({ col: 1, row: 2 }, 1);
+      model.setValue({ col: 2, row: 1 }, -2);
+      model.setValue({ col: 3, row: 0 }, 3);
+      model.setValue({ col: 3, row: 2 }, -3);
       view.init();
 
       // inspect the inital state
@@ -230,14 +241,14 @@ describe('table-view', () => {
 
     it('can calculate the sum of a columns numbers with strings', () => {
       // set up the inital state
-      const model = new TableModel(3,3);
+      const model = new TableModel(3, 3);
       const view = new TableView(model);
-      model.setValue({col:1, row:0}, 1);
-      model.setValue({col:1, row:2}, 1);
-      model.setValue({col:2, row:0}, 'apple');
-      model.setValue({col:2, row:1}, -2);
-      model.setValue({col:3, row:0}, 3);
-      model.setValue({col:3, row:2}, -3);
+      model.setValue({ col: 1, row: 0 }, 1);
+      model.setValue({ col: 1, row: 2 }, 1);
+      model.setValue({ col: 2, row: 0 }, 'apple');
+      model.setValue({ col: 2, row: 1 }, -2);
+      model.setValue({ col: 3, row: 0 }, 3);
+      model.setValue({ col: 3, row: 2 }, -3);
       view.init();
 
       // inspect the inital state
@@ -246,11 +257,22 @@ describe('table-view', () => {
       expect(columnSums).toEqual(['2-20'])
     })
 
+    it('renders 0 when a column has numbers and sums to 0', () => {
+      // set up the inital state
+      const model = new TableModel(3, 3);
+      const view = new TableView(model);
+      model.setValue({ col: 1, row: 0 }, -1);
+      model.setValue({ col: 1, row: 1 }, 'sauce');
+      model.setValue({ col: 1, row: 2 }, 1);
+
+
+      view.init();
+
+      // inspect the inital state
+      let ths = document.querySelectorAll('TFOOT TR');
+      let columnSums = Array.from(ths).map(el => el.textContent);
+      expect(columnSums).toEqual(['0'])
+    })
 
   });
 });
-
-
-
-
-

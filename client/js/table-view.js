@@ -153,7 +153,7 @@ class TableView {
         this.addRow.bind(this));
   }
 
-  addColumn(event) {
+  addColumn() {
     this.model.numCols = this.model.numCols + 1;
     const col = this.currentCellLocation.col
     const row = this.currentCellLocation.row
@@ -178,7 +178,7 @@ class TableView {
     this.renderTable();
   }
 
-  addRow(event) {
+  addRow() {
     this.model.numRows = this.model.numRows + 1;
     const col = this.currentCellLocation.col
     const row = this.currentCellLocation.row
@@ -216,8 +216,6 @@ class TableView {
     this.currentCellLocation = { col: col, row: row };
     this.renderTableBody();
     this.renderTableHeader();
-
-
   }
 
   handleSheetClick(evt) {
