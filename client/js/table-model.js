@@ -17,15 +17,6 @@ class TableModel {
     this.data[this._getCellId(location)] = value;
   }
 
-  shiftColumn(column){
-    const values = getColumn(column)
-    column = column + 1;
-    for (var r = 0; r < values.length; r++){
-      let location = { col: column, row: r }
-      setValue(location, values[r])
-    }
-  }
-
   getColumn(column) {
     // echo
     let values = {};
@@ -35,10 +26,6 @@ class TableModel {
       values[r] = value;
     }
     return values
-  }
-
-  shitRow(row){
-    // similar to shift column
   }
 
   getRow(row){

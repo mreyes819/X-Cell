@@ -27,6 +27,7 @@ describe('tableModel', () => {
     expect(JSON.stringify(model.getColumn(0))).toBe(JSON.stringify({"0":"foo","1":"bar"}));
   });
 
+
   it('can get the values in a row', () => {
     const model = new TabelModel(2,2);
     model.setValue({ row: 0, col: 0}, 'foo');
@@ -36,6 +37,7 @@ describe('tableModel', () => {
 
     expect(JSON.stringify(model.getRow(0))).toBe(JSON.stringify({"0":"foo","1":"aaa"}));
   });
+
 
 })
 
