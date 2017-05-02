@@ -115,10 +115,10 @@ describe('table-view', () => {
     //   view.init();
 
     //   // simulate user action
-    //   let trs = document.querySelectorAll('TBODY TR');
-    //   let td = trs[0].cells[0];
+    //   let ths = document.querySelectorAll('THEAD TH');
+    //   let td = ths[-1].cells[1];
     //   td.click()
-    //   document.getElementById('Add Row').click();
+    //   document.getElementById('Add Column').click();
 
     //   // inspect the resulting state
     //   expect(model.getValue({ col: 2, row: 2 })).toBe('B');
@@ -217,6 +217,37 @@ describe('table-view', () => {
       // inspect the resulting state
       let labelTexts = Array.from(ths).map(el => el.textContent);
       expect(labelTexts).toEqual(['', 'A', 'B', 'C', 'D', 'E', 'F'])
+    });
+
+
+    it('highlights the column when the column header is selected', () => {
+      // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+      // set up the inital state
+      const numCols = 5;
+      const numRows = 5;
+      const model = new TableModel(numCols, numRows);
+      const view = new TableView(model);
+      view.init();
+      // inspect the inital state
+      let trs = document.querySelectorAll('TBODY TR');
+
+      let td = trs[1].cells[1];
+      expect(td.className).toBe('');
+      td = trs[2].cells[1];
+      expect(td.className).toBe('');
+
+
+      // simulate user action
+      let ths = document.querySelectorAll('THEAD TH');
+      ths[1].click();
+
+      // inspect the resulting state
+      trs = document.querySelectorAll('TBODY TR');
+      td = trs[1].cells[1];
+      expect(td.className).toBe('current-col');
+      td = trs[2].cells[1];
+      expect(td.className).toBe('current-col');
     });
 
   });
