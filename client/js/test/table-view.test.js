@@ -74,6 +74,7 @@ describe('table-view', () => {
       td = trs[2].cells[3];
       expect(td.className).not.toBe('');
     });
+
     it('has the right size', () => {
       // set up the inital state
       const numCols = 6;
@@ -98,6 +99,30 @@ describe('table-view', () => {
       const trs = document.querySelectorAll('TBODY TR');
       expect(trs[1].cells[2].textContent).toBe('123');
     });
+
+    it('highlights the current row when a row label cell is clicked', () => {
+      // set up the initial state
+      const model = new TableModel(5,5);
+      const view = new TableView(model);
+      view.init()
+
+      // inspect the initial state
+      let trs = document.querySelectorAll('TBODY TR');
+      let td = trs[2].cells[0];
+      expect(td.className).toBe('');
+
+      // simulate user action
+      td.click();
+
+      // inspect the resulting state
+      trs = document.querySelectorAll('TBODY TR');
+      td = trs[2].cells[0];
+      expect(td.className).toBe('current-row');
+
+      td = trs[2].cells[2];
+      expect(td.className).toBe('current-row');
+    });
+
   });
 
   describe('table header', () => {
@@ -116,6 +141,28 @@ describe('table-view', () => {
       let labelTexts = Array.from(ths).map(el => el.textContent);
       expect(labelTexts).toEqual(['','A','B','C','D','E','F'])
     });
+
+    // it('highlights the current column when a table header label cell is clicked', () => {
+    //   // set up the initial state
+    //   const model = new TableModel(5,5);
+    //   const view = new TableView(model);
+    //   view.init()
+
+    //   // inspect the initial state
+    //   let ths = document.querySelectorAll('THEAD TH');
+    //   let td = ths.cells;
+    //   console.log(td)
+    //   //expect(td.className).toBe('');
+
+    //   // simulate user action
+    //   //td.click();
+
+    //   // inspect the resulting state
+    //   // ths = document.querySelectorAll('THEAD TH');
+    //   // td = ths[0].cells[3];
+    //   // expect(td.className).not.toBe('');
+    // });
+
   });
 
   describe('table footer', () => {
@@ -123,18 +170,38 @@ describe('table-view', () => {
       // set up the inital state
       const model = new TableModel(3,3);
       const view = new TableView(model);
-      model.setValue({col:0, row:0}, 1);
-      model.setValue({col:0, row:2}, 1);
-      model.setValue({col:1, row:1}, -2);
-      model.setValue({col:2, row:0}, 3);
-      model.setValue({col:2, row:2}, -3);
+      model.setValue({col:1, row:0}, 1);
+      model.setValue({col:1, row:2}, 1);
+      model.setValue({col:2, row:1}, -2);
+      model.setValue({col:3, row:0}, 3);
+      model.setValue({col:3, row:2}, -3);
       view.init();
 
       // inspect the inital state
       let ths = document.querySelectorAll('TFOOT TR');
       let columnSums = Array.from(ths).map(el => el.textContent);
-      expect(columnSums).toEqual(['-20'])
+      expect(columnSums).toEqual(['2-20'])
     })
+
+    it('can calculate the sum of a columns numbers with strings', () => {
+      // set up the inital state
+      const model = new TableModel(3,3);
+      const view = new TableView(model);
+      model.setValue({col:1, row:0}, 1);
+      model.setValue({col:1, row:2}, 1);
+      model.setValue({col:2, row:0}, 'apple');
+      model.setValue({col:2, row:1}, -2);
+      model.setValue({col:3, row:0}, 3);
+      model.setValue({col:3, row:2}, -3);
+      view.init();
+
+      // inspect the inital state
+      let ths = document.querySelectorAll('TFOOT TR');
+      let columnSums = Array.from(ths).map(el => el.textContent);
+      expect(columnSums).toEqual(['2-20'])
+    })
+
+
   });
 });
 

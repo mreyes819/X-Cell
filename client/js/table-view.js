@@ -159,9 +159,6 @@ class TableView {
     const col = this.currentCellLocation.col
     const row = this.currentCellLocation.row
 
-    // checks to see if in col header when user clicks add row
-    // adds column to the right of the current column
-    // I should have implemented in table-model
     if (row === -1){
       for(let c = this.model.numCols - 1; c > col; c--) {
         const columnValues = this.model.getColumn(c);
@@ -188,9 +185,6 @@ class TableView {
     const col = this.currentCellLocation.col
     const row = this.currentCellLocation.row
 
-    // checks to see if in row header when user clicks add row
-    // adds row below the current row selected.
-    // I should have implemented in table-model
     if (col === 0){
       for(let r = this.model.numRows - 1; r > row; r--) {
         const rowValues = this.model.getRow(r);
