@@ -30,7 +30,7 @@ class TableView {
 
   isCurrentCell(col, row) {
     return this.currentCellLocation.row === row &&
-           this.currentCellLocation.col === col;
+      this.currentCellLocation.col === col;
   }
 
   // Rendering things
@@ -65,7 +65,7 @@ class TableView {
     // highlights columns
     const col = this.currentCellLocation.col
     const row = this.currentCellLocation.row
-    if (col > 0 && row === -1){
+    if (col > 0 && row === -1) {
       document.getElementsByTagName("TH")[col].className = 'current-col';
     }
   }
@@ -75,7 +75,7 @@ class TableView {
     for (let row = 0; row < this.model.numRows; row++) {
       const tr = createTR();
       for (let col = 0; col < this.model.numCols + 1; col++) {
-        const position = {col: col, row: row};
+        const position = { col: col, row: row };
         const value = this.model.getValue(position);
         const td = createTD(value);
 
@@ -83,16 +83,16 @@ class TableView {
         if (this.isCurrentCell(col, row)) {
           td.className = 'current-cell';
         }
-        if (this.isCurrentCell(0, row)){
+        if (this.isCurrentCell(0, row)) {
           td.className = 'current-row';
         }
-        if (this.isCurrentCell(col, -1) && col > 0){
+        if (this.isCurrentCell(col, -1) && col > 0) {
           td.className = 'current-col';
         }
         if (col === 0) {
           td.id = row;
           td.innerHTML = row;
-          td.align="center"
+          td.align = "center"
         }
 
         tr.appendChild(td)
@@ -118,12 +118,12 @@ class TableView {
     // I would like for this to be in a seperate JS file
     // with all other math operators but I digress
     let sums = [];
-    for (let col = 1 ; col < this.model.numCols + 1; col++) {
+    for (let col = 1; col < this.model.numCols + 1; col++) {
       let column = this.model.getColumn(col)
       let total = null;
-      for (let row in column){
+      for (let row in column) {
         let value = parseInt(column[row]);
-        if(!isNaN(value)){
+        if (!isNaN(value)) {
           total += value;
         }
       }
@@ -153,23 +153,22 @@ class TableView {
         this.addRow.bind(this));
   }
 
-  addColumn(event){
+  addColumn(event) {
     this.model.numCols = this.model.numCols + 1;
-
     const col = this.currentCellLocation.col
     const row = this.currentCellLocation.row
 
-    if (row === -1){
-      for(let c = this.model.numCols - 1; c > col; c--) {
-        const columnValues = this.model.getColumn(c);
-        for(let r = 0; r < this.model.numRows; r++){
+    if (row === -1) {
+      for (let c = this.model.numCols - 1; c > col; c--) {
+        let columnValues = this.model.getColumn(c);
+        for (let r = 0; r < this.model.numRows; r++) {
           let location = { col: c + 1, row: r };
-          const value = columnValues[r]
+          let value = columnValues[r]
           this.model.setValue(location, value);
         }
       }
 
-      const columnValues = this.model.getColumn(col + 1);
+      let columnValues = this.model.getColumn(col + 1);
       for (let r = 0; r < this.model.numRows; r++) {
         let location = { col: col + 1, row: r };
         this.model.setValue(location, null);
@@ -179,23 +178,22 @@ class TableView {
     this.renderTable();
   }
 
-  addRow(event){
+  addRow(event) {
     this.model.numRows = this.model.numRows + 1;
-
     const col = this.currentCellLocation.col
     const row = this.currentCellLocation.row
 
-    if (col === 0){
-      for(let r = this.model.numRows - 1; r > row; r--) {
-        const rowValues = this.model.getRow(r);
-        for(let c = 0; c < this.model.numCols; c++){
+    if (col === 0) {
+      for (let r = this.model.numRows - 1; r > row; r--) {
+        let rowValues = this.model.getRow(r);
+        for (let c = 0; c < this.model.numCols; c++) {
           let location = { col: c, row: r + 1 };
-          const value = rowValues[c]
+          let value = rowValues[c]
           this.model.setValue(location, value);
         }
       }
 
-      const rowValues = this.model.getRow(row + 1);
+      let rowValues = this.model.getRow(row + 1);
       for (let c = 0; c < this.model.numCols; c++) {
         let location = { col: c, row: row + 1 };
         this.model.setValue(location, null);
@@ -205,14 +203,14 @@ class TableView {
     this.renderTable();
   }
 
-  handleFormulaBarChange(evt){
+  handleFormulaBarChange(evt) {
     const value = this.formulaBarEl.value;
     this.model.setValue(this.currentCellLocation, value);
     this.renderTableBody();
     this.renderTableFoot();
   }
 
-  handleColumnLableClick(evt){
+  handleColumnLableClick(evt) {
     const col = evt.target.cellIndex;
     const row = evt.target.parentElement.rowIndex - 1;
     this.currentCellLocation = { col: col, row: row };

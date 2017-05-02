@@ -53,6 +53,46 @@ describe('table-view', () => {
     });
   });
 
+  describe('add row/column', () => {
+    it('adds a new row when add row button is clicked', () => {
+      const model = new TableModel(5,5);
+      const view = new TableView(model);
+      view.init()
+      document.getElementById('Add Row').click();
+      expect(model.numRows).toBe(6);
+
+    });
+
+    it('adds a new column when add column button is clicked', () => {
+      const model = new TableModel(5,5);
+      const view = new TableView(model);
+      view.init()
+      document.getElementById('Add Column').click();
+      expect(model.numCols).toBe(6)
+    });
+
+
+    it('adds a new row when add row button is clicked below current row', () => {
+      const model = new TableModel(4,4);
+      const view = new TableView(model);
+      view.init()
+      model.setValue({col:1, row:0}, 'A');
+      model.setValue({col:1, row:1}, 'B');
+      model.setValue({col:2, row:0}, 'C');
+      model.setValue({col:2, row:1}, 'D');
+
+      // simulate user action
+        // selects row header
+        // clicks add row
+
+      // inspect the resulting state
+    });
+
+    // it('adds a new coulmn when add coulmn button is clicked to the right of the current column', () => {
+    // });
+
+  });
+
   describe('table body', () => {
 
     it('highlights the current cell when clicked', () => {
@@ -150,10 +190,15 @@ describe('table-view', () => {
 
     //   // inspect the initial state
     //   let ths = document.querySelectorAll('THEAD TH');
-    //   let td = ths.cells;
-    //   console.log(td)
-    //   //expect(td.className).toBe('');
+    //   console.log(ths)
+    //   console.log(ths[1].HTMLTableHeaderCellElement)
+    //   ths[1].click();
+    //   //let td = ths['0'];
 
+    //   console.log(ths[1].HTMLTableHeaderCellElement)
+    //   //expect(td.className).toBe('');
+    //   // trs = document.querySelectorAll('TBODY TR');
+    //   // td = trs[2].cells[3];
     //   // simulate user action
     //   //td.click();
 
